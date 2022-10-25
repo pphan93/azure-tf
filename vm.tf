@@ -32,8 +32,9 @@ resource "azurerm_linux_virtual_machine" "linux-vm" {
   resource_group_name = azurerm_resource_group.azrg_vnet.name
   location = azurerm_virtual_network.az_vnet[1 + count.index].location
   size = "Standard_F2"
+  custom_data = base64encode(file("scripts/ngix_vm_init.sh"))
 
-   network_interface_ids = [local.nic_id[count.index]]
+  network_interface_ids = [local.nic_id[count.index]]
 
   admin_username = var.vm_username
   admin_password = var.vm_password
