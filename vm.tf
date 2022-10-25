@@ -35,8 +35,8 @@ resource "azurerm_linux_virtual_machine" "linux-vm" {
 
    network_interface_ids = [local.nic_id[count.index]]
 
-  admin_username = "adminuser"
-  admin_password = "P@ss123Test"
+  admin_username = var.vm_username
+  admin_password = var.vm_password
   disable_password_authentication = false
 
   os_disk {
